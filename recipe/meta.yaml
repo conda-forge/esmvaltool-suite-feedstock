@@ -55,6 +55,7 @@ outputs:
         - nc-time-axis
         - netCDF4
         - numpy
+        - openpyxl
         - pandas
         - pyproj >=2.1
         - python >=3.7
