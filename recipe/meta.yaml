@@ -26,12 +26,12 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.7
-        - pip
+        - python >=3.8
+        - pip!=21.3
       host:
-        - python >=3.7
+        - python >=3.8
         - setuptools_scm
-        - pip
+        - pip!=21.3
       run:
         - cartopy
         - cdo >=1.9.7
@@ -44,7 +44,7 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.4.*
+        - esmvalcore 2.5.*
         - fiona
         - gdal
         - jinja2
@@ -58,7 +58,7 @@ outputs:
         - openpyxl
         - pandas
         - pyproj >=2.1
-        - python >=3.7
+        - python >=3.8
         - python-cdo
         - pyyaml
         - rasterio  # replaces pynio
@@ -87,7 +87,7 @@ outputs:
       imports:
         - esmvaltool
       commands:
-        - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/test_docs.py" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
+        - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
         - esmvaltool --help
         - cmorize_obs --help
         - nclcodestyle --help
@@ -182,9 +182,9 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
