@@ -33,6 +33,10 @@ outputs:
         - setuptools_scm
         - pip!=21.3
       run:
+        # Python packages only available on PyPI
+        - pip:
+          - mapgenerator >= 1.0.5
+        # Python packages available on conda-forge
         - cartopy
         - cdo >=1.9.7
         - cdsapi
@@ -46,7 +50,9 @@ outputs:
         - esmpy
         - esmvalcore 2.5.*
         - fiona
+        - fire
         - gdal
+        - iris >=3.1.0,<3.2.0
         - jinja2
         - joblib
         - lime
@@ -57,14 +63,19 @@ outputs:
         - numpy
         - openpyxl
         - pandas
+        - progressbar
+        - prov
         - pyproj >=2.1
         - python >=3.8
         - python-cdo
+        - python-dateutil
         - pyyaml
         - rasterio  # replaces pynio
+        - requests
         - ruamel.yaml
         - scikit-image
         - scikit-learn
+        - scipy
         - seaborn
         - seawater
         - shapely
