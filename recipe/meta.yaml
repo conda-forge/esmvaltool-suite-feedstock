@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.4.0" %}
+{% set version = "2.5.0" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: cdeac96ccf7ff7c67af19976a0c99991f06edd3d105e9b16079d0fd68f4a1ad9
+  sha256: d90439593779287e3cd6d095eda1c227518cd8104e586fdedbdbe62e7000181f
 
 build:
   number: 0
@@ -17,7 +17,6 @@ outputs:
     build:
       noarch: python
       entry_points:
-        - cmorize_obs = esmvaltool.cmorizers.obs.cmorize_obs:main
         - mip_convert_setup = esmvaltool.cmorizers.mip_convert.esmvt_mipconv_setup:main
         - nclcodestyle = esmvaltool.utils.nclcodestyle.nclcodestyle:_main
         - test_recipe = esmvaltool.utils.testing.recipe_settings.install_expand_run:main
@@ -26,12 +25,12 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.7
-        - pip
+        - python >=3.8
+        - pip !=21.3
       host:
-        - python >=3.7
+        - python >=3.8
         - setuptools_scm
-        - pip
+        - pip !=21.3
       run:
         - cartopy
         - cdo >=1.9.7
@@ -44,12 +43,15 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.4.*
+        - esmvalcore 2.5.*
         - fiona
+        - fire
         - gdal
+        - iris >=3.1.0,<3.2.0
         - jinja2
         - joblib
         - lime
+        - mapgenerator >=1.0.5
         - matplotlib-base
         - natsort
         - nc-time-axis
@@ -57,19 +59,24 @@ outputs:
         - numpy
         - openpyxl
         - pandas
+        - progressbar2
+        - prov
         - pyproj >=2.1
-        - python >=3.7
+        - python >=3.8
         - python-cdo
+        - python-dateutil
         - pyyaml
         - rasterio  # replaces pynio
+        - requests
         - ruamel.yaml
         - scikit-image
         - scikit-learn
+        - scipy
         - seaborn
         - seawater
         - shapely
         - xarray >=0.12.0
-        - xesmf
+        - xesmf =0.3.0
         - xgboost
         - xlsxwriter
     test:
@@ -87,9 +94,9 @@ outputs:
       imports:
         - esmvaltool
       commands:
-        - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/test_docs.py" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
+        - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
         - esmvaltool --help
-        - cmorize_obs --help
+        - esmvaltool data --help
         - nclcodestyle --help
         - esmvaltool colortables --help
         - test_recipe --help
@@ -182,9 +189,9 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
@@ -196,7 +203,7 @@ outputs:
         - esmvaltool --help
         - esmvaltool recipes list
         - esmvaltool version
-        - cmorize_obs --help
+        - esmvaltool data --help
         - nclcodestyle --help
         - esmvaltool colortables --help
         - test_recipe --help
