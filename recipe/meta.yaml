@@ -51,6 +51,7 @@ outputs:
         - jinja2
         - joblib
         - lime
+        - mapgenerator >=1.0.5
         - matplotlib-base
         - natsort
         - nc-time-axis
