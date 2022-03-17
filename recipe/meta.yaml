@@ -59,7 +59,7 @@ outputs:
         - numpy
         - openpyxl
         - pandas
-        - progressbar
+        - progressbar2
         - prov
         - pyproj >=2.1
         - python >=3.8
