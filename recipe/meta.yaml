@@ -76,7 +76,7 @@ outputs:
         - seawater
         - shapely
         - xarray >=0.12.0
-        - xesmf
+        - xesmf =0.3.0
         - xgboost
         - xlsxwriter
     test:
