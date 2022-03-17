@@ -96,7 +96,7 @@ outputs:
       commands:
         - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
         - esmvaltool --help
-        - cmorize_obs --help
+        - esmvaltool data --help
         - nclcodestyle --help
         - esmvaltool colortables --help
         - test_recipe --help
@@ -203,7 +203,7 @@ outputs:
         - esmvaltool --help
         - esmvaltool recipes list
         - esmvaltool version
-        - cmorize_obs --help
+        - esmvaltool data --help
         - nclcodestyle --help
         - esmvaltool colortables --help
         - test_recipe --help
