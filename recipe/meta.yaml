@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.5.0" %}
+{% set version = "2.6.0" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d90439593779287e3cd6d095eda1c227518cd8104e586fdedbdbe62e7000181f
+  sha256: e633920695f2590728e45ed11f8ca5423aa20d26c780cc342db7ac3c95c0d5b8
 
 build:
   number: 0
@@ -35,7 +35,7 @@ outputs:
         - cartopy
         - cdo >=1.9.7
         - cdsapi
-        - cf-units
+        - cf-units >=3.0.0,<3.1.0,!=3.0.1.post0
         - cftime
         - cmocean
         - cython
@@ -43,11 +43,11 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.5.*
+        - esmvalcore 2.6.*
         - fiona
         - fire
         - gdal
-        - iris >=3.1.0,<3.2.0
+        - iris >=3.1.0
         - jinja2
         - joblib
         - lime
@@ -61,6 +61,10 @@ outputs:
         - pandas
         - progressbar2
         - prov
+        - psy-maps
+        - psy-reg
+        - psy-simple
+        - psyplot
         - pyproj >=2.1
         - python >=3.8
         - python-cdo
@@ -144,7 +148,7 @@ outputs:
         - nco
         - r-base >=3.5
         - r-abind
-        - r-akima
+        - r-akima <=0.6-2.3
         - r-climdex.pcic
         - r-climprojdiags
         - r-docopt
