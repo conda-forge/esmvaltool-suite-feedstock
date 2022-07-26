@@ -47,7 +47,7 @@ outputs:
         - fiona
         - fire
         - gdal
-        - iris >=3.1.0,<3.2.0
+        - iris >=3.1.0
         - jinja2
         - joblib
         - lime
