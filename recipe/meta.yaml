@@ -148,7 +148,7 @@ outputs:
         - nco
         - r-base >=3.5
         - r-abind
-        - r-akima
+        - r-akima <=0.6-2.3
         - r-climdex.pcic
         - r-climprojdiags
         - r-docopt
