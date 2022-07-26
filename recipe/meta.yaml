@@ -61,6 +61,10 @@ outputs:
         - pandas
         - progressbar2
         - prov
+        - psy-maps
+        - psy-reg
+        - psy-simple
+        - psyplot
         - pyproj >=2.1
         - python >=3.8
         - python-cdo
