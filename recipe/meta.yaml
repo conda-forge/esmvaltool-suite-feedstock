@@ -42,7 +42,7 @@ outputs:
         - dask
         - ecmwf-api-client
         - eofs
-        - esmpy
+        - esmpy <8.4  # github.com/ESMValGroup/ESMValCore/issues/1870
         - esmvalcore 2.7.*
         - fiona
         - fire
