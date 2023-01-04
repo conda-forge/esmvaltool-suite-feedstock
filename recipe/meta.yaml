@@ -75,7 +75,8 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn
+        # remove this pin at release; this uses older, deprecated code
+        - scikit-learn <1.2.0  # github.com/ESMValGroup/ESMValTool/pull/2961
         - scipy
         - seaborn
         - seawater
