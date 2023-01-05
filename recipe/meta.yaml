@@ -10,7 +10,7 @@ source:
   sha256: 397f0e94d0f75112d159dad4e7fb6a16594e07749590fcef163eb99f10b10f1b
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: esmvaltool-python
@@ -42,7 +42,7 @@ outputs:
         - dask
         - ecmwf-api-client
         - eofs
-        - esmpy
+        - esmpy <8.4  # github.com/ESMValGroup/ESMValCore/issues/1870
         - esmvalcore 2.7.*
         - fiona
         - fire
@@ -75,11 +75,12 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn
+        # remove this pin at release; this uses older, deprecated code
+        - scikit-learn <1.2.0  # github.com/ESMValGroup/ESMValTool/pull/2961
         - scipy
         - seaborn
         - seawater
-        - shapely
+        - shapely <2.0.0  # github.com/ESMValGroup/ESMValTool/issues/2992
         - xarray >=0.12.0
         - xesmf =0.3.0
         - xgboost >1.6.1
