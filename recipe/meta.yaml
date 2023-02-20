@@ -226,6 +226,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - remi-kazeroni
     - sloosvel
     - schlunma
     - zklaus
