@@ -44,7 +44,7 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy  # <8.4  sill needed but comes from Core; github.com/ESMValGroup/ESMValCore/issues/1870
-        - esmvalcore 2.8.*
+        - esmvalcore 2.7.*  # needs to be 2.8.* after stable release
         - fiona
         - fire
         - gdal
