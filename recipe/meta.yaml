@@ -98,6 +98,7 @@ outputs:
         - pytest-env
         - pytest-html !=2.1.0
         - pytest-metadata >=1.5.1
+        - pytest-mock
         - pytest-xdist
       imports:
         - esmvaltool
@@ -138,6 +139,7 @@ outputs:
         - pytest-env
         - pytest-html !=2.1.0
         - pytest-metadata >=1.5.1
+        - pytest-mock
         - pytest-xdist
       commands:
         - pytest -n 2 -k "[diagnostic.ncl]"
@@ -188,6 +190,7 @@ outputs:
         - pytest-env
         - pytest-html !=2.1.0
         - pytest-metadata >=1.5.1
+        - pytest-mock
         - pytest-xdist
       commands:
         - pytest -n 2 -k "[diagnostic.R] or test_r_lint"
