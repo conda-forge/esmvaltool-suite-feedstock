@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.8.0" %}
+{% set version = "2.9.0" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 466046e4b68ea61516aab473da1237e693175652aee98a8c1c0f60228dea2153
+  sha256: e8d2bcece8e985f8be5807e00bc22ae225208b6c8b82b5d2cefa6b8eeab8fb34
 
 build:
   number: 0
@@ -25,10 +25,10 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.8
+        - python >=3.9
         - pip !=21.3
       host:
-        - python >=3.8
+        - python >=3.9
         - setuptools_scm
         - pip !=21.3
       run:
@@ -41,15 +41,16 @@ outputs:
         - cmocean
         - cython
         - dask
+        - distributed
         - ecmwf-api-client
         - eofs
-        - esmpy  # <8.4 sill needed but pin comes from Core
-        - esmvalcore 2.8.*
+        - esmpy
+        - esmvalcore 2.9.*
         - fiona
         - fire
         - gdal
-        - iris >=3.1.0
-        - iris-esmf-regrid
+        - iris >=3.4.0
+        - iris-esmf-regrid >=0.7.0
         - jinja2
         - joblib
         - lime
@@ -58,7 +59,7 @@ outputs:
         - natsort
         - nc-time-axis
         - netCDF4
-        - numpy
+        - numpy !=1.24.3  # severe masking bug
         - openpyxl
         - packaging
         - pandas
@@ -69,11 +70,11 @@ outputs:
         - psy-simple
         - psyplot
         - pyproj >=2.1
-        - python >=3.8
+        - python >=3.9
         - python-cdo
         - python-dateutil
         - pyyaml
-        - rasterio  # replaces pynio
+        - rasterio
         - requests
         - ruamel.yaml
         - scikit-image
@@ -81,9 +82,9 @@ outputs:
         - scipy
         - seaborn
         - seawater
-        - shapely <2.0.0  # github.com/ESMValGroup/ESMValTool/issues/2992
+        - shapely
         - xarray >=0.12.0
-        - xesmf =0.3.0
+        - xesmf >=0.7.1
         - xgboost >1.6.1
         - xlsxwriter
         - zarr
