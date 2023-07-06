@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.8.0" %}
+{% set version = "2.9.0" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 466046e4b68ea61516aab473da1237e693175652aee98a8c1c0f60228dea2153
+  sha256: e8d2bcece8e985f8be5807e00bc22ae225208b6c8b82b5d2cefa6b8eeab8fb34
 
 build:
   number: 0
