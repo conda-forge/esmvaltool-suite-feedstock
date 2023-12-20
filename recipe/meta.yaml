@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.9.0" %}
+{% set version = "2.10.0" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e8d2bcece8e985f8be5807e00bc22ae225208b6c8b82b5d2cefa6b8eeab8fb34
+  sha256: e67acef48b8e1167360b074485d29f79b18abaeeaab1555894bbe96a6cbf7f7d
 
 build:
   number: 0
@@ -45,11 +45,11 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.9.*
+        - esmvalcore 2.10.*
         - fiona
         - fire
         - gdal
-        - iris >=3.4.0
+        - iris >=3.6.1
         - iris-esmf-regrid >=0.7.0
         - jinja2
         - joblib
@@ -59,12 +59,14 @@ outputs:
         - natsort
         - nc-time-axis
         - netCDF4
+        - numba
         - numpy !=1.24.3  # severe masking bug
         - openpyxl
         - packaging
         - pandas
         - progressbar2
         - prov
+        - psyplot
         - psy-maps
         - psy-reg
         - psy-simple
@@ -93,7 +95,6 @@ outputs:
         - tests
         - setup.cfg
       requires:
-        - flake8
         - pytest >=3.9,!=6.0.0rc1,!=6.0.0
         - pytest-cov
         - pytest-env
@@ -134,7 +135,6 @@ outputs:
         - tests
         - setup.cfg
       requires:
-        - flake8
         - pytest >=3.9,!=6.0.0rc1,!=6.0.0
         - pytest-cov
         - pytest-env
@@ -185,7 +185,6 @@ outputs:
         - tests
         - setup.cfg
       requires:
-        - flake8
         - pytest >=3.9,!=6.0.0rc1,!=6.0.0
         - pytest-cov
         - pytest-env
@@ -201,9 +200,9 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.8
+        - python >=3.9
       run:
-        - python >=3.8
+        - python >=3.9
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
