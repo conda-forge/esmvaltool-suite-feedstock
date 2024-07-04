@@ -227,6 +227,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - ehogan
     - remi-kazeroni
     - sloosvel
     - schlunma
