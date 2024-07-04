@@ -62,7 +62,7 @@ outputs:
         - nc-time-axis
         - netCDF4
         - numba
-        - numpy !=1.24.3  # severe masking bug
+        - numpy !=1.24.3,<2.0.0  # severe masking bug, avoid pulling 2.0.0
         - openpyxl
         - packaging
         - pandas !=2.2.0,!=2.2.1,!=2.2.2 # github.com/ESMValGroup/ESMValCore/pull/2305
