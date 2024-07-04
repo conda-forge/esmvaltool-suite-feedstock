@@ -1,13 +1,13 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.10.0" %}
+{% set version = "2.11.0" %}
 
 package:
   name: {{ name|lower }}-suite
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e67acef48b8e1167360b074485d29f79b18abaeeaab1555894bbe96a6cbf7f7d
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: 099160392048f7ccddb420790e0529ce1ee8b795962be51ebd09e78b8ea38cac
 
 build:
   number: 0
@@ -34,7 +34,7 @@ outputs:
       run:
         - aiohttp
         - cartopy
-        - cdo >=1.9.7
+        - cdo >=2.3.0
         - cdsapi
         - cf-units
         - cftime
@@ -44,18 +44,20 @@ outputs:
         - distributed
         - ecmwf-api-client
         - eofs
-        - esmpy
-        - esmvalcore 2.10.*
+        - esmpy !=8.1.0,<8.6.0  # https://github.com/SciTools-incubator/iris-esmf-regrid/pull/342#issuecomment-2092921514
+        - esmvalcore 2.11.*
         - fiona
         - fire
+        - fsspec
         - gdal
+        - importlib_metadata <8  # required for Python < 3.10
         - iris >=3.6.1
         - iris-esmf-regrid >=0.7.0
         - jinja2
         - joblib
         - lime
         - mapgenerator >=1.0.5
-        - matplotlib-base
+        - matplotlib-base <3.9.0
         - natsort
         - nc-time-axis
         - netCDF4
@@ -63,14 +65,15 @@ outputs:
         - numpy !=1.24.3  # severe masking bug
         - openpyxl
         - packaging
-        - pandas
+        - pandas !=2.2.0,!=2.2.1,!=2.2.2 # github.com/ESMValGroup/ESMValCore/pull/2305
         - progressbar2
         - prov
+        - psyplot
         - psy-maps
         - psy-reg
         - psy-simple
-        - psyplot
         - pyproj >=2.1
+        - pys2index  # only from conda-forge
         - python >=3.9
         - python-cdo
         - python-dateutil
@@ -79,14 +82,14 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn
+        - scikit-learn >=1.4.0  # github.com/ESMValGroup/ESMValTool/issues/3504
         - scipy
         - seaborn
         - seawater
-        - shapely
+        - shapely >=2
         - xarray >=0.12.0
         - xesmf >=0.7.1
-        - xgboost >1.6.1
+        - xgboost >1.6.1  # github.com/ESMValGroup/ESMValTool/issues/2779
         - xlsxwriter
         - zarr
     test:
@@ -94,6 +97,7 @@ outputs:
         - tests
         - setup.cfg
       requires:
+        - flake8
         - pytest >=3.9,!=6.0.0rc1,!=6.0.0
         - pytest-cov
         - pytest-env
