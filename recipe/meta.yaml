@@ -25,10 +25,10 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.9
+        - python >=3.9,<3.12
         - pip !=21.3
       host:
-        - python >=3.9
+        - python >=3.9,<3.12
         - setuptools_scm
         - pip !=21.3
       run:
@@ -75,7 +75,7 @@ outputs:
         - psy-simple
         - pyproj >=2.1
         - pys2index  # only from conda-forge
-        - python >=3.9
+        - python >=3.9,<3.12
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -206,9 +206,9 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.9
+        - python >=3.9,<3.12
       run:
-        - python >=3.9
+        - python >=3.9,<3.12
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
