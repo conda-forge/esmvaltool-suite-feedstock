@@ -10,7 +10,7 @@ source:
   sha256: 099160392048f7ccddb420790e0529ce1ee8b795962be51ebd09e78b8ea38cac
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: esmvaltool-python
@@ -25,20 +25,21 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.9
+        - python >=3.9,<3.12
         - pip !=21.3
       host:
-        - python >=3.9
+        - python >=3.9,<3.12
         - setuptools_scm
         - pip !=21.3
       run:
         - aiohttp
-        - cartopy
+        - cartopy <0.24  # https://github.com/ESMValGroup/ESMValTool/issues/3767
         - cdo >=2.3.0
         - cdsapi
         - cf-units
         - cftime
         - cmocean
+        - curl <8.10  # https://github.com/ESMValGroup/ESMValTool/pull/3755
         - cython
         - dask
         - distributed
@@ -65,7 +66,7 @@ outputs:
         - numpy !=1.24.3,<2.0.0  # severe masking bug, avoid pulling 2.0.0
         - openpyxl
         - packaging
-        - pandas !=2.2.0,!=2.2.1,!=2.2.2 # github.com/ESMValGroup/ESMValCore/pull/2305
+        - pandas <2.2.0 # github.com/ESMValGroup/ESMValCore/pull/2305 and avoid any new Pandas release
         - progressbar2
         - prov
         - psyplot
@@ -74,7 +75,7 @@ outputs:
         - psy-simple
         - pyproj >=2.1
         - pys2index  # only from conda-forge
-        - python >=3.9
+        - python >=3.9,<3.12
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -205,9 +206,9 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.9
+        - python >=3.9,<3.12
       run:
-        - python >=3.9
+        - python >=3.9,<3.12
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
