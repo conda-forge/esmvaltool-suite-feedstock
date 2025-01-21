@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
   sha256: 099160392048f7ccddb420790e0529ce1ee8b795962be51ebd09e78b8ea38cac
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: esmvaltool-python
@@ -28,7 +28,7 @@ outputs:
         - python >=3.9,<3.12
         - pip !=21.3
       host:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
         - setuptools_scm
         - pip !=21.3
       run:
@@ -75,7 +75,7 @@ outputs:
         - psy-simple
         - pyproj >=2.1
         - pys2index  # only from conda-forge
-        - python >=3.9,<3.12
+        - python >={{ python_min }},<3.12
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -106,6 +106,7 @@ outputs:
         - pytest-metadata >=1.5.1
         - pytest-mock
         - pytest-xdist
+        - python {{ python_min }}
       imports:
         - esmvaltool
       commands:
@@ -206,14 +207,16 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
       run:
-        - python >=3.9,<3.12
+        - python >={{ python_min }},<3.12
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
         - {{ pin_subpackage('esmvaltool-r', exact=True) }}
     test:
+      requires:
+        - python {{ python_min }}
       imports:
         - esmvaltool
       commands:
