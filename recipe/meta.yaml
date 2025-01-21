@@ -29,6 +29,7 @@ outputs:
         - pip !=21.3
       host:
         - python {{ python_min }}
+        - setuptools
         - setuptools_scm
         - pip !=21.3
       run:
@@ -51,7 +52,7 @@ outputs:
         - fire
         - fsspec
         - gdal
-        - importlib_metadata <8  # required for Python < 3.10
+        - importlib-metadata <8  # required for Python < 3.10
         - iris >=3.6.1
         - iris-esmf-regrid >=0.7.0
         - jinja2
