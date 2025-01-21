@@ -1,6 +1,8 @@
 {% set name = "ESMValTool" %}
 {% set version = "2.11.0" %}
 
+{% set python_max = "3.11" %}
+
 package:
   name: {{ name|lower }}-suite
   version: {{ version }}
@@ -25,7 +27,7 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
         - pip !=21.3
       host:
         - python {{ python_min }}
@@ -76,7 +78,7 @@ outputs:
         - psy-simple
         - pyproj >=2.1
         - pys2index  # only from conda-forge
-        - python >={{ python_min }},<3.12
+        - python >={{ python_min }},<={{ python_max }}
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -210,7 +212,7 @@ outputs:
       host:
         - python {{ python_min }}
       run:
-        - python >={{ python_min }},<3.12
+        - python >={{ python_min }},<={{ python_max }}
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
