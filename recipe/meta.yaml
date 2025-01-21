@@ -1,16 +1,18 @@
 {% set name = "ESMValTool" %}
 {% set version = "2.11.0" %}
 
+{% set python_max = "3.11" %}
+
 package:
   name: {{ name|lower }}-suite
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
   sha256: 099160392048f7ccddb420790e0529ce1ee8b795962be51ebd09e78b8ea38cac
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: esmvaltool-python
@@ -25,10 +27,11 @@ outputs:
     script: build_python.sh  # [not win]
     requirements:
       build:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
         - pip !=21.3
       host:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
+        - setuptools
         - setuptools_scm
         - pip !=21.3
       run:
@@ -51,7 +54,7 @@ outputs:
         - fire
         - fsspec
         - gdal
-        - importlib_metadata <8  # required for Python < 3.10
+        - importlib-metadata <8  # required for Python < 3.10
         - iris >=3.6.1
         - iris-esmf-regrid >=0.7.0
         - jinja2
@@ -75,7 +78,7 @@ outputs:
         - psy-simple
         - pyproj >=2.1
         - pys2index  # only from conda-forge
-        - python >=3.9,<3.12
+        - python >={{ python_min }},<={{ python_max }}
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -83,7 +86,7 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn >=1.4.0  # github.com/ESMValGroup/ESMValTool/issues/3504
+        - scikit-learn >=1.4.0,<1.6  # github.com/ESMValGroup/ESMValTool/issues/3504 (lower pin), https://github.com/ESMValGroup/ESMValTool/pull/3850 (upper pin)
         - scipy
         - seaborn
         - seawater
@@ -106,6 +109,7 @@ outputs:
         - pytest-metadata >=1.5.1
         - pytest-mock
         - pytest-xdist
+        - python {{ python_min }}
       imports:
         - esmvaltool
       commands:
@@ -206,14 +210,16 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.9,<3.12
+        - python {{ python_min }}
       run:
-        - python >=3.9,<3.12
+        - python >={{ python_min }},<={{ python_max }}
         # - {{ pin_subpackage('esmvaltool-julia', exact=True) }}
         - {{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - {{ pin_subpackage('esmvaltool-python', exact=True) }}
         - {{ pin_subpackage('esmvaltool-r', exact=True) }}
     test:
+      requires:
+        - python {{ python_min }}
       imports:
         - esmvaltool
       commands:
