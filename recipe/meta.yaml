@@ -84,7 +84,7 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn >=1.4.0,<1.7  # github.com/ESMValGroup/ESMValTool/issues/3504 (lower pin), https://github.com/ESMValGroup/ESMValTool/pull/3850 (upper pin)
+        - scikit-learn >=1.4.0,<1.6  # github.com/ESMValGroup/ESMValTool/issues/3504 (lower pin), https://github.com/ESMValGroup/ESMValTool/pull/3850 (upper pin)
         - scipy
         - seaborn
         - seawater
