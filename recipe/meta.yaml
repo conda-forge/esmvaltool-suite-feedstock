@@ -1,7 +1,7 @@
 {% set name = "ESMValTool" %}
 {% set version = "2.12.0" %}
 
-{% set python_max = "3.11" %}
+{% set python_max = "3.12" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -36,46 +36,47 @@ outputs:
         - pip !=21.3
       run:
         - aiohttp
-        - cartopy <0.24  # https://github.com/ESMValGroup/ESMValTool/issues/3767
+        - cartopy
         - cdo >=2.3.0
         - cdsapi
         - cf-units
+        - cfgrib  
         - cftime
         - cmocean
         - curl <8.10  # https://github.com/ESMValGroup/ESMValTool/pull/3755
         - cython
-        - dask
+        - dask !=2024.8.0
         - distributed
         - ecmwf-api-client
         - eofs
-        - esmpy !=8.1.0,<8.6.0  # https://github.com/SciTools-incubator/iris-esmf-regrid/pull/342#issuecomment-2092921514
-        - esmvalcore 2.11.*
+        - esmpy
+        - esmvalcore 2.12.*
         - fiona
         - fire
         - fsspec
-        - gdal
+        - gdal >=3.9.0
         - importlib-metadata <8  # required for Python < 3.10
-        - iris >=3.6.1
-        - iris-esmf-regrid >=0.7.0
+        - iris >=3.11
+        - iris-esmf-regrid >=0.10.0
         - jinja2
         - joblib
         - lime
         - mapgenerator >=1.0.5
-        - matplotlib-base <3.9.0
+        - matplotlib-base
         - natsort
         - nc-time-axis
         - netCDF4
         - numba
-        - numpy !=1.24.3,<2.0.0  # severe masking bug, avoid pulling 2.0.0
+        - numpy !=1.24.3  # severe masking bug, avoid pulling 2.0.0
         - openpyxl
         - packaging
-        - pandas <2.2.0 # github.com/ESMValGroup/ESMValCore/pull/2305 and avoid any new Pandas release
+        - pandas
         - progressbar2
         - prov
-        - psyplot
-        - psy-maps
-        - psy-reg
-        - psy-simple
+        - psyplot >=1.5.0
+        - psy-maps >=1.5.0
+        - psy-reg >=1.5.0
+        - psy-simple >=1.5.0
         - pyproj >=2.1
         - pys2index  # only from conda-forge
         - python >={{ python_min }},<={{ python_max }}
@@ -86,11 +87,11 @@ outputs:
         - requests
         - ruamel.yaml
         - scikit-image
-        - scikit-learn >=1.4.0,<1.6  # github.com/ESMValGroup/ESMValTool/issues/3504 (lower pin), https://github.com/ESMValGroup/ESMValTool/pull/3850 (upper pin)
+        - scikit-learn >=1.4.0 # github.com/ESMValGroup/ESMValTool/issues/3504
         - scipy
         - seaborn
         - seawater
-        - shapely >=2
+        - shapely >=2.0.2
         - xarray >=0.12.0
         - xesmf >=0.7.1
         - xgboost >1.6.1  # github.com/ESMValGroup/ESMValTool/issues/2779
