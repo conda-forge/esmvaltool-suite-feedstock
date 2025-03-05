@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.11.0" %}
+{% set version = "2.12.0" %}
 
 {% set python_max = "3.11" %}
 
@@ -9,10 +9,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
-  sha256: 099160392048f7ccddb420790e0529ce1ee8b795962be51ebd09e78b8ea38cac
+  sha256: 3cf3458193699b47c97e517dee88086a3bd527da6e3b3f6e651b5bb3bd8024cd
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: esmvaltool-python
