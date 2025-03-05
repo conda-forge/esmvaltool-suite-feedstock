@@ -22,7 +22,6 @@ outputs:
         - mip_convert_setup = esmvaltool.cmorizers.mip_convert.esmvt_mipconv_setup:main
         - nclcodestyle = esmvaltool.utils.nclcodestyle.nclcodestyle:_main
         - test_recipe = esmvaltool.utils.testing.recipe_settings.install_expand_run:main
-        - recipe_filler = esmvaltool.utils.recipe_filler:run
     script: build_python.bat  # [win]
     script: build_python.sh  # [not win]
     requirements:
@@ -56,6 +55,7 @@ outputs:
         - fsspec
         - gdal >=3.9.0
         - importlib-metadata <8  # required for Python < 3.10
+        - ipython <9.0  # github.com/ESMValGroup/ESMValCore/issues/2680
         - iris >=3.11
         - iris-esmf-regrid >=0.10.0
         - jinja2
