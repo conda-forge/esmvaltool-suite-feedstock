@@ -1,7 +1,7 @@
 {% set name = "ESMValTool" %}
 {% set version = "2.12.0" %}
 
-{% set python_max = "3.12" %}
+{% set python_max = "3.13" %}
 
 package:
   name: {{ name|lower }}-suite
@@ -12,7 +12,7 @@ source:
   sha256: 3cf3458193699b47c97e517dee88086a3bd527da6e3b3f6e651b5bb3bd8024cd
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: esmvaltool-python
@@ -42,7 +42,6 @@ outputs:
         - cfgrib  
         - cftime
         - cmocean
-        - curl <8.10  # https://github.com/ESMValGroup/ESMValTool/pull/3755
         - cython
         - dask !=2024.8.0
         - distributed
@@ -54,7 +53,6 @@ outputs:
         - fire
         - fsspec
         - gdal >=3.9.0
-        - importlib-metadata <8  # required for Python < 3.10
         - ipython <9.0  # github.com/ESMValGroup/ESMValCore/issues/2680
         - iris >=3.11
         - iris-esmf-regrid >=0.10.0
@@ -73,10 +71,6 @@ outputs:
         - pandas
         - progressbar2
         - prov
-        - psyplot >=1.5.0
-        - psy-maps >=1.5.0
-        - psy-reg >=1.5.0
-        - psy-simple >=1.5.0
         - pyproj >=2.1
         - pys2index  # only from conda-forge
         - python >={{ python_min }},<={{ python_max }}
