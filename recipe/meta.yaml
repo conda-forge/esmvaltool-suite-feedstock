@@ -1,5 +1,5 @@
 {% set name = "ESMValTool" %}
-{% set version = "2.12.0" %}
+{% set version = "2.13.0" %}
 
 {% set python_max = "3.12" %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
-  sha256: 3cf3458193699b47c97e517dee88086a3bd527da6e3b3f6e651b5bb3bd8024cd
+  sha256: 92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5
 
 build:
   number: 0
@@ -39,7 +39,7 @@ outputs:
         - cdo >=2.3.0
         - cdsapi
         - cf-units
-        - cfgrib  
+        - cfgrib
         - cftime
         - cmocean
         - curl <8.10  # https://github.com/ESMValGroup/ESMValTool/pull/3755
