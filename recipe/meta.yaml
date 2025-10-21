@@ -55,7 +55,8 @@ outputs:
         - fire
         - fsspec
         - gdal >=3.9.0
-        - ipython <9.0  # github.com/ESMValGroup/ESMValCore/issues/2680
+        - imagehash
+        - ipython
         - iris >=3.11
         - iris-esmf-regrid >=0.10.0
         - jinja2
