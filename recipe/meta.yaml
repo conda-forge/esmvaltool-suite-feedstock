@@ -214,7 +214,6 @@ outputs:
         - esmvaltool data --help
         - nclcodestyle --help
         - esmvaltool colortables --help
-        - test_recipe --help
 
 about:
   home: https://www.esmvaltool.org
