@@ -159,7 +159,9 @@ outputs:
         - r-dotcall64
         - r-functional
         - r-ggplot2
+        - r-git2r  # dependency of r-lintr
         - r-gridextra
+        - r-lintr ==3.1.2
         - r-logging
         - r-mapproj
         - r-maps
@@ -173,6 +175,7 @@ outputs:
         - r-s2dverification
         - r-snow
         - r-spei
+        - r-styler ==1.10.3
         - r-udunits2
         - r-yaml
     test:
