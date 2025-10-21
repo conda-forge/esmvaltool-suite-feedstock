@@ -74,7 +74,7 @@ outputs:
         - progressbar2
         - prov
         - pyproj >=2.1
-        - pys2index  # only from conda-forge
+        - pys2index >=0.1.5  # only from conda-forge; 0.1.4 broken
         - python >={{ python_min }},<={{ python_max }}
         - python-cdo
         - python-dateutil
