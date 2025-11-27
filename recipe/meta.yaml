@@ -24,6 +24,8 @@ outputs:
         - nclcodestyle = esmvaltool.utils.nclcodestyle.nclcodestyle:_main
     script: build_python.bat  # [win]
     script: build_python.sh  # [not win]
+    patches:
+      - 0001-Unpin-ipython.patch
     requirements:
       build:
         - python {{ python_min }}
