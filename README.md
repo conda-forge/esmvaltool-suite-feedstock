@@ -151,6 +151,7 @@ Feedstock Maintainers
 * [@bettina-gier](https://github.com/bettina-gier/)
 * [@bouweandela](https://github.com/bouweandela/)
 * [@ehogan](https://github.com/ehogan/)
+* [@jlenh](https://github.com/jlenh/)
 * [@nielsdrost](https://github.com/nielsdrost/)
 * [@remi-kazeroni](https://github.com/remi-kazeroni/)
 * [@schlunma](https://github.com/schlunma/)
