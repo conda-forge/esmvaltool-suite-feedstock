@@ -11,9 +11,11 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
   sha256: 92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5
+  patches:
+    - 0001-Unpin-ipython.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: esmvaltool-python
@@ -110,6 +112,7 @@ outputs:
       imports:
         - esmvaltool
       commands:
+        - pip check
         - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.jl] or [diagnostic.ncl] or test_r_lint)"
         - esmvaltool --help
         - esmvaltool data --help
