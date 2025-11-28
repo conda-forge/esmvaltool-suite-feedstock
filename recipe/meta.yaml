@@ -11,6 +11,8 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz
   sha256: 92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5
+  patches:
+    - 0001-Unpin-ipython.patch
 
 build:
   number: 1
@@ -24,8 +26,6 @@ outputs:
         - nclcodestyle = esmvaltool.utils.nclcodestyle.nclcodestyle:_main
     script: build_python.bat  # [win]
     script: build_python.sh  # [not win]
-    patches:
-      - 0001-Unpin-ipython.patch
     requirements:
       build:
         - python {{ python_min }}
