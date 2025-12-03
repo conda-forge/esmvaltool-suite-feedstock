@@ -4,7 +4,6 @@ context:
   name: ESMValTool
   version: 2.13.0
   python_min: 3.11
-  python_max: 3.14
 
 recipe:
   name: ${{ name|lower }}-suite
@@ -79,7 +78,7 @@ outputs:
         - prov
         - pyproj >=2.1
         - pys2index >=0.1.5 # only from conda-forge; 0.1.4 broken
-        - python >=${{ python_min }},<=${{ python_max }}
+        - python >=${{ python_min }}
         - python-cdo
         - python-dateutil
         - pyyaml
@@ -214,7 +213,7 @@ outputs:
         - ${{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - ${{ pin_subpackage('esmvaltool-python', exact=True) }}
         - ${{ pin_subpackage('esmvaltool-r', exact=True) }}
-        - python >=${{ python_min }},<=${{ python_max }}
+        - python >=${{ python_min }}
     tests:
       - python:
           imports:
