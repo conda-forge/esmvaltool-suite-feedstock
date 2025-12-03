@@ -141,7 +141,6 @@ outputs:
             - setup.cfg
         requirements:
           run:
-            - pre-commit
             - pytest >=3.9,!=6.0.0rc1,!=6.0.0
             - pytest-cov
             - pytest-env
@@ -195,7 +194,6 @@ outputs:
             - setup.cfg
         requirements:
           run:
-            - pre-commit
             - pytest >=3.9,!=6.0.0rc1,!=6.0.0
             - pytest-cov
             - pytest-env
