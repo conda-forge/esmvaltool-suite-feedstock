@@ -30,13 +30,11 @@ outputs:
           - nclcodestyle = esmvaltool.utils.nclcodestyle.nclcodestyle:_main
     requirements:
       build:
-        - python {{ python_min }}
         - pip !=21.3
-      host:
-        - python {{ python_min }}
         - setuptools
         - setuptools_scm
-        - pip !=21.3
+      host:
+        - python ${{ python_min }}.*
       run:
         - aiohttp
         - arviz
@@ -104,10 +102,9 @@ outputs:
       - files:
           source:
             - tests
-            - setup.cfg
+            - pyproject.toml
         requirements:
           run:
-            - pre-commit
             - pytest >=3.9,!=6.0.0rc1,!=6.0.0
             - pytest-cov
             - pytest-env
@@ -115,7 +112,7 @@ outputs:
             - pytest-metadata >=1.5.1
             - pytest-mock
             - pytest-xdist
-            - python ${{ python_min }}
+            - python {{ python_min }}.*
         script:
           - pip check
           - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
@@ -210,10 +207,7 @@ outputs:
     build:
       noarch: python
     requirements:
-      host:
-        - python ${{ python_min }}
       run:
-        - python >=${{ python_min }},<=${{ python_max }}
         - ${{ pin_subpackage('esmvaltool-ncl', exact=True) }}
         - ${{ pin_subpackage('esmvaltool-python', exact=True) }}
         - ${{ pin_subpackage('esmvaltool-r', exact=True) }}
@@ -223,7 +217,7 @@ outputs:
             - esmvaltool
       - requirements:
           run:
-            - python ${{ python_min }}
+            - python ${{ python_min }}.*
         script:
           - esmvaltool --help
           - esmvaltool recipes list
