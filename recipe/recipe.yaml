@@ -50,7 +50,7 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.13.*
+        - esmvalcore >=2.14.0
         - fiona
         - fire
         - fsspec
