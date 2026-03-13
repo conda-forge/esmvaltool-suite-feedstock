@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: ESMValTool
-  version: 2.13.0
-  python_min: 3.11
+  version: 2.14.0
+  python_min: "3.11"
 
 recipe:
   name: ${{ name|lower }}-suite
@@ -11,12 +11,12 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|lower }}-${{ version }}.tar.gz
-  sha256: 92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5
+  sha256: f7084fc5fbfa627fc0caf2e5dd4fa59d3b914ed8cd9ad012851a2231b5c2595f
   patches:
     - 0001-Unpin-ipython.patch
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - package:
