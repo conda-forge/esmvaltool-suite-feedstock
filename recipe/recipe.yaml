@@ -75,7 +75,6 @@ outputs:
         - progressbar2
         - prov
         - pyproj >=2.1
-        - pys2index >=0.1.5 # only from conda-forge; 0.1.4 broken
         - python >=${{ python_min }}
         - python-cdo
         - python-dateutil
@@ -132,6 +131,7 @@ outputs:
         - cdo
         - imagemagick
         - nco
+        - pys2index >=0.1.5 # only from conda-forge; 0.1.4 broken; upstream: pys2index is in the NCL pixi environment
     tests:
       - files:
           source:
