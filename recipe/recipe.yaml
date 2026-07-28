@@ -114,7 +114,9 @@ outputs:
             - pytest-xdist
             - python ${{ python_min }}.*
         script:
-          - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
+          # TODO remove --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py"
+          # once github.com/ESMValGroup/ESMValTool/pull/4523 gets in the upstream bundle
+          - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
           - esmvaltool --help
           - esmvaltool data --help
           - nclcodestyle --help
