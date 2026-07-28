@@ -36,7 +36,6 @@ outputs:
         - setuptools_scm >=8
       run:
         - aiohttp
-        - arviz
         - cartopy
         - cdo >=2.3.0
         - cdsapi
