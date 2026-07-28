@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ESMValTool
-  version: 2.14.0
+  version: "2.15.0"
   python_min: "3.12"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|lower }}-${{ version }}.tar.gz
-  sha256: f7084fc5fbfa627fc0caf2e5dd4fa59d3b914ed8cd9ad012851a2231b5c2595f
+  sha256: e38e3ce86f0602875f1cffe9a81452893bc63e323b3255ed1bf90b61f02a1945
 
 build:
   number: 0
