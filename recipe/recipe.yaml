@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ESMValTool
-  version: 2.14.0
+  version: "2.15.0"
   python_min: "3.12"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|lower }}-${{ version }}.tar.gz
-  sha256: f7084fc5fbfa627fc0caf2e5dd4fa59d3b914ed8cd9ad012851a2231b5c2595f
+  sha256: e38e3ce86f0602875f1cffe9a81452893bc63e323b3255ed1bf90b61f02a1945
 
 build:
   number: 0
@@ -36,7 +36,6 @@ outputs:
         - setuptools_scm >=8
       run:
         - aiohttp
-        - arviz
         - cartopy
         - cdo >=2.3.0
         - cdsapi
@@ -50,7 +49,7 @@ outputs:
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore >=2.14.0
+        - esmvalcore 2.15.*
         - fiona
         - fire
         - fsspec
@@ -75,13 +74,13 @@ outputs:
         - progressbar2
         - prov
         - pyproj >=2.1
-        - pys2index >=0.1.5 # only from conda-forge; 0.1.4 broken
         - python >=${{ python_min }}
         - python-cdo
         - python-dateutil
         - pyyaml
         - rasterio >=1.3.10
         - requests
+        - rich
         - scikit-image
         - scikit-learn >=1.4.0 # github.com/ESMValGroup/ESMValTool/issues/3504
         - scipy
@@ -114,7 +113,9 @@ outputs:
             - pytest-xdist
             - python ${{ python_min }}.*
         script:
-          - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
+          # TODO remove --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py"
+          # once github.com/ESMValGroup/ESMValTool/pull/4523 gets in the upstream bundle
+          - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
           - esmvaltool --help
           - esmvaltool data --help
           - nclcodestyle --help
@@ -130,11 +131,11 @@ outputs:
         - cdo
         - imagemagick
         - nco
+        - pys2index >=0.1.5 # only from conda-forge; 0.1.4 broken; upstream: pys2index is in the NCL pixi environment
     tests:
       - files:
           source:
             - tests
-            - setup.cfg
         requirements:
           run:
             - pytest >=3.9,!=6.0.0rc1,!=6.0.0
@@ -185,7 +186,6 @@ outputs:
       - files:
           source:
             - tests
-            - setup.cfg
         requirements:
           run:
             - pytest >=3.9,!=6.0.0rc1,!=6.0.0
