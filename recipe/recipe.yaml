@@ -50,7 +50,9 @@ outputs:
           imports:
             - esmvaltool
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - files:
           source:
             - tests
@@ -140,7 +142,9 @@ outputs:
           imports:
             - esmvaltool
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - files:
           source:
             - tests
@@ -271,7 +275,9 @@ outputs:
           imports:
             - esmvaltool
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - requirements:
           run:
             - python ${{ python_min }}.*
