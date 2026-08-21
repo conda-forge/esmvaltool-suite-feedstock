@@ -14,11 +14,11 @@ source:
   sha256: e38e3ce86f0602875f1cffe9a81452893bc63e323b3255ed1bf90b61f02a1945
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
-      name: esmvaltool-python
+      name: esmvaltool-base
     build:
       noarch: python
       script: ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
@@ -35,39 +35,86 @@ outputs:
         - setuptools >=80
         - setuptools_scm >=8
       run:
+        - cf-units
+        - dask !=2024.8.0
+        - distributed
+        - esmvalcore 2.15.*
+        - iris >=3.11
+        - matplotlib-base
+        - numpy >=2.0.0
+        - python >=${{ python_min }}
+        - pyyaml
+        - rich
+    tests:
+      - python:
+          imports:
+            - esmvaltool
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+      - files:
+          source:
+            - tests
+            - pyproject.toml
+        requirements:
+          run:
+            - pytest >=3.9,!=6.0.0rc1,!=6.0.0
+            - pytest-cov
+            - pytest-env
+            - pytest-html !=2.1.0
+            - pytest-metadata >=1.5.1
+            - pytest-mock
+            - pytest-xdist
+            - python ${{ python_min }}.*
+        script:
+          - >-
+            pytest
+            -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
+            -n 2
+            --ignore="run_test.py"
+            --ignore="tests/unit/cmorizers/test_cmorization_interface.py"
+            --ignore="tests/unit/documentation/"
+            --ignore="tests/sample_data/diag_scripts/"
+          - esmvaltool --help
+          - esmvaltool data --help
+          - nclcodestyle --help
+          - esmvaltool colortables --help
+  - package:
+      name: esmvaltool-python
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - ${{ pin_subpackage('esmvaltool-base', exact=True) }}
         - aiohttp
         - cartopy
         - cdo >=2.3.0
         - cdsapi
-        - cf-units
         - cfgrib
         - cftime
         - cmocean
         - cython
-        - dask !=2024.8.0
-        - distributed
         - ecmwf-api-client
         - eofs
         - esmpy
-        - esmvalcore 2.15.*
         - fiona
         - fire
         - fsspec
         - gdal >=3.9.0
         - imagehash
         - ipython
-        - iris >=3.11
         - iris-esmf-regrid >=0.10.0
         - jinja2
         - joblib
         - lime
         - mapgenerator >=1.0.5
-        - matplotlib-base
         - natsort
         - nc-time-axis
         - netCDF4
         - numba
-        - numpy >=2.0.0
         - openpyxl
         - packaging
         - pandas
@@ -77,10 +124,8 @@ outputs:
         - python >=${{ python_min }}
         - python-cdo
         - python-dateutil
-        - pyyaml
         - rasterio >=1.3.10
         - requests
-        - rich
         - scikit-image
         - scikit-learn >=1.4.0 # github.com/ESMValGroup/ESMValTool/issues/3504
         - scipy
@@ -97,7 +142,9 @@ outputs:
           imports:
             - esmvaltool
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - files:
           source:
             - tests
@@ -115,7 +162,13 @@ outputs:
         script:
           # TODO remove --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py"
           # once github.com/ESMValGroup/ESMValTool/pull/4523 gets in the upstream bundle
-          - pytest -n 2 --ignore="run_test.py" --ignore="tests/unit/documentation/" --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py" -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
+          - >-
+            pytest
+            -k "not ([diagnostic.R] or [diagnostic.ncl] or test_r_lint)"
+            -n 2
+            --ignore="run_test.py"
+            --ignore="tests/unit/documentation/"
+            --ignore="tests/sample_data/diag_scripts/monitor/test_multi_datasets.py"
           - esmvaltool --help
           - esmvaltool data --help
           - nclcodestyle --help
@@ -126,7 +179,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage('esmvaltool-python', exact=True) }}
+        - ${{ pin_subpackage('esmvaltool-base', exact=True) }}
         - ncl >=6.6.2
         - cdo
         - imagemagick
@@ -146,14 +199,18 @@ outputs:
             - pytest-mock
             - pytest-xdist
         script:
-          - pytest -n 2 -k "[diagnostic.ncl]"
+          - >-
+            pytest
+            -k "[diagnostic.ncl]"
+            -n 2
+            --ignore="tests/sample_data/diag_scripts/"
   - package:
       name: esmvaltool-r
     build:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage('esmvaltool-python', exact=True) }}
+        - ${{ pin_subpackage('esmvaltool-base', exact=True) }}
         - nco
         - cdo
         - r-base >=4.4
@@ -196,7 +253,11 @@ outputs:
             - pytest-mock
             - pytest-xdist
         script:
-          - pytest -n 2 -k "[diagnostic.R] or test_r_lint"
+          - >-
+            pytest
+            -k "[diagnostic.R] or test_r_lint"
+            -n 2
+            --ignore="tests/sample_data/diag_scripts/"
   - package:
       name: esmvaltool
     build:
@@ -214,7 +275,9 @@ outputs:
           imports:
             - esmvaltool
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - requirements:
           run:
             - python ${{ python_min }}.*
